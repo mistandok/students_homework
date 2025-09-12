@@ -1,5 +1,5 @@
 import pytest
-from main import is_sentence_is_pangram
+from pangram import is_sentence_is_pangram
 
 
 @pytest.mark.parametrize(

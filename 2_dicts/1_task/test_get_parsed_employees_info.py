@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from main import get_parsed_employees_info
+from employees import get_parsed_employees_info
 from pydantic import BaseModel, ValidationError
 
 
