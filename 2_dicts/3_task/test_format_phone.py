@@ -1,5 +1,5 @@
 import pytest
-from main import format_phone
+from phone_formatter import format_phone
 
 STANDARD = "8 (901) 123-45-67"
 

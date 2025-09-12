@@ -20,17 +20,17 @@ tasks:
   test:strings:
     desc: "🔤 Тесты заданий по строкам (1_strings)"
     cmds:
-      - uv run pytest 1_strings/1_two_string_array_equivalent/test.py -v
-      - uv run pytest 1_strings/2_sentence_is_pangram/test.py -v
-      - uv run pytest 1_strings/3_maximum_number_of_words/test.py -v
-      - uv run pytest 1_strings/4_safe_text/test.py -v
+      - uv run pytest 1_strings/1_two_string_array_equivalent/test_is_array_string_are_equal.py -v
+      - uv run pytest 1_strings/2_sentence_is_pangram/test_is_sentence_is_pangram.py -v
+      - uv run pytest 1_strings/3_maximum_number_of_words/test_get_max_number_of_words_from_sentences.py -v
+      - uv run pytest 1_strings/4_safe_text/test_recover_article.py -v
 
   test:dicts:
     desc: "📚 Тесты заданий по словарям (2_dicts)" 
     cmds:
-      - uv run pytest 2_dicts/1_task/test.py -v
-      - uv run pytest 2_dicts/2_task/test.py -v
-      - uv run pytest 2_dicts/3_task/test.py -v
+      - uv run pytest 2_dicts/1_task/test_get_parsed_employees_info.py -v
+      - uv run pytest 2_dicts/2_task/test_top_10_most_common_words.py -v
+      - uv run pytest 2_dicts/3_task/test_format_phone.py -v
 
   test:functions:
     desc: "⚙️ Тесты заданий по функциям (3_functions)"

@@ -1,5 +1,5 @@
 import pytest
-from main import is_array_string_are_equal
+from strings import is_array_string_are_equal
 
 
 @pytest.mark.parametrize(
