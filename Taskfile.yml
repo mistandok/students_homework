@@ -59,7 +59,7 @@ tasks:
     desc: "🔍 Проверка кода линтером и форматированием"
     cmds:
       - uv run ruff check .
-      - uv run ruff format --check .
+      - uv run ruff format --check --diff .
 
   format:
     desc: "✨ Автоматическое форматирование кода"
