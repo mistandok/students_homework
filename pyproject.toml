@@ -42,7 +42,7 @@ packages = []
 [tool.ruff]
 # Set the maximum line length to 120.
 line-length = 120
-exclude = ["test*"]
+exclude = ["test*.py", "**/test*.py", "**/test_*.py"]
 
 [tool.ruff.lint]
 # Add the `line-too-long` rule to the enforced rule set. By default, Ruff omits rules that
