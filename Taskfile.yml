@@ -1,0 +1,96 @@
+version: '3'
+
+# Задачи для работы с проектом
+tasks:
+  
+  init:
+    desc: "🚀 Инициализация проекта - установка зависимостей"
+    cmds:
+      - echo "Устанавливаем зависимости с помощью uv..."
+      - uv sync
+      - echo "✅ Проект готов к работе!"
+
+  # Тестирование
+  
+  test:
+    desc: "🧪 Запуск всех тестов проекта"
+    cmds:
+      - uv run pytest -v --tb=short
+
+  test:strings:
+    desc: "🔤 Тесты заданий по строкам (1_strings)"
+    cmds:
+      - uv run pytest 1_strings/1_two_string_array_equivalent/test.py -v
+      - uv run pytest 1_strings/2_sentence_is_pangram/test.py -v
+      - uv run pytest 1_strings/3_maximum_number_of_words/test.py -v
+      - uv run pytest 1_strings/4_safe_text/test.py -v
+
+  test:dicts:
+    desc: "📚 Тесты заданий по словарям (2_dicts)" 
+    cmds:
+      - uv run pytest 2_dicts/1_task/test.py -v
+      - uv run pytest 2_dicts/2_task/test.py -v
+      - uv run pytest 2_dicts/3_task/test.py -v
+
+  test:functions:
+    desc: "⚙️ Тесты заданий по функциям (3_functions)"
+    cmds:
+      - uv run pytest 3_functions/1_phone_text_code/decode/test_decode.py -v
+      - uv run pytest 3_functions/1_phone_text_code/encode/test_encode.py -v
+      - uv run pytest 3_functions/2_functional_programming/test_calculator.py -v
+
+  test:decorators:
+    desc: "🎭 Тесты заданий по декораторам (4_decorators)"
+    cmds:
+      - uv run pytest 4_decorators/retry/test_retry.py -v
+
+  test:iterators:
+    desc: "🔄 Тесты заданий по итераторам (5_iterators)"
+    cmds:
+      - uv run pytest 5_iterators/self_batched/test_self_batched.py -v
+      - uv run pytest 5_iterators/self_chain/test_self_chain.py -v
+      - uv run pytest 5_iterators/self_cycle/test_self_cycle.py -v
+
+  test:classes:
+    desc: "🏛️ Тесты заданий по классам (6_classes)"
+    cmds:
+      - uv run pytest 6_classes/1_metrics/test_metrics.py -v
+
+  test:final:
+    desc: "🎯 Тесты финального задания (7_final_task)"
+    cmds:
+      - echo "Финальное задание пока не содержит автоматизированных тестов"
+      - echo "См. описание в 7_final_task/weather_task.md"
+
+  # Проверка качества кода
+
+  lint:
+    desc: "🔍 Проверка кода линтером"
+    cmds:
+      - uv run ruff check .
+
+  format:
+    desc: "✨ Автоматическое форматирование кода"
+    cmds:
+      - uv run ruff format .
+
+  check:
+    desc: "🔍 Полная проверка кода (линтер + форматирование)"
+    cmds:
+      - uv run ruff check .
+      - uv run ruff format --check .
+
+  default:
+    desc: "📋 Показать справку"
+    cmds:
+      - echo "=== 🎓 Основные команды ==="
+      - echo "task init           - Настроить проект"
+      - echo "task test           - Запустить все тесты"
+      - echo "task test:strings   - Тесты по строкам"
+      - echo "task test:dicts     - Тесты по словарям"
+      - echo "task test:functions - Тесты по функциям"
+      - echo "task lint           - Проверка линтером"
+      - echo "task format         - Форматирование кода"
+      - echo "task check          - Полная проверка"
+      - echo ""
+      - echo "Документация ./docs/"
