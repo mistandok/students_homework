@@ -35,7 +35,42 @@ jobs:
         echo "✨ Running ruff formatter check..."
         uv run ruff format --check --diff .
 
-    - name: Run tests
+    - name: Run tests for 0_example
       run: |
-        echo "🧪 Running pytest..."
-        uv run pytest -v
+        echo "🧪 Running pytest for 0_example..."
+        uv run pytest -v 0_example/
+
+    - name: Run tests for 1_strings
+      run: |
+        echo "🧪 Running pytest for 1_strings..."
+        uv run pytest -v 1_strings/
+
+    - name: Run tests for 2_dicts
+      run: |
+        echo "🧪 Running pytest for 2_dicts..."
+        uv run pytest -v 2_dicts/
+
+    - name: Run tests for 3_functions
+      run: |
+        echo "🧪 Running pytest for 3_functions..."
+        uv run pytest -v 3_functions/
+
+    - name: Run tests for 4_decorators
+      run: |
+        echo "🧪 Running pytest for 4_decorators..."
+        uv run pytest -v 4_decorators/
+
+    - name: Run tests for 5_iterators
+      run: |
+        echo "🧪 Running pytest for 5_iterators..."
+        uv run pytest -v 5_iterators/
+
+    - name: Run tests for 6_classes
+      run: |
+        echo "🧪 Running pytest for 6_classes..."
+        uv run pytest -v 6_classes/
+
+    - name: Run tests for 7_final_task
+      run: |
+        echo "🧪 Running pytest for 7_final_task..."
+        uv run pytest -v 7_final_task/
