@@ -7,11 +7,9 @@ on:
     branches: [ main ]
 
 jobs:
-  lint-and-test:
+  lint:
+    name: lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.12"]
 
     steps:
     - uses: actions/checkout@v4
@@ -22,55 +20,48 @@ jobs:
         enable-cache: true
         cache-dependency-glob: "uv.lock"
 
-    - name: Set up Python ${{ matrix.python-version }}
-      run: uv python install ${{ matrix.python-version }}
+    - name: Set up Python
+      run: uv python install 3.12
 
     - name: Install dependencies
       run: uv sync
 
-    - name: Lint with ruff
-      run: |
-        echo "🔍 Running ruff linter (excluding test files)..."
-        uv run ruff check .
-        echo "✨ Running ruff formatter check..."
-        uv run ruff format --check --diff .
+    - name: Ruff linter
+      run: uv run ruff check .
 
-    - name: Run tests for 0_example
-      run: |
-        echo "🧪 Running pytest for 0_example..."
-        uv run pytest -v 0_example/
+    - name: Ruff formatter
+      run: uv run ruff format --check --diff .
 
-    - name: Run tests for 1_strings
-      run: |
-        echo "🧪 Running pytest for 1_strings..."
-        uv run pytest -v 1_strings/
+  test:
+    # Отдельная проверка на каждую тему: в PR видно, какая тема прошла, а какая нет.
+    # Сдаёшь тему — смотри на её строку, нерешённые темы будут красными, это нормально.
+    name: test (${{ matrix.topic }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        topic:
+          - 1_strings
+          - 2_dicts
+          - 3_functions
+          - 4_decorators
+          - 5_iterators
+          - 6_classes
 
-    - name: Run tests for 2_dicts
-      run: |
-        echo "🧪 Running pytest for 2_dicts..."
-        uv run pytest -v 2_dicts/
+    steps:
+    - uses: actions/checkout@v4
 
-    - name: Run tests for 3_functions
-      run: |
-        echo "🧪 Running pytest for 3_functions..."
-        uv run pytest -v 3_functions/
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+        cache-dependency-glob: "uv.lock"
 
-    - name: Run tests for 4_decorators
-      run: |
-        echo "🧪 Running pytest for 4_decorators..."
-        uv run pytest -v 4_decorators/
+    - name: Set up Python
+      run: uv python install 3.12
 
-    - name: Run tests for 5_iterators
-      run: |
-        echo "🧪 Running pytest for 5_iterators..."
-        uv run pytest -v 5_iterators/
+    - name: Install dependencies
+      run: uv sync
 
-    - name: Run tests for 6_classes
-      run: |
-        echo "🧪 Running pytest for 6_classes..."
-        uv run pytest -v 6_classes/
-
-    - name: Run tests for 7_final_task
-      run: |
-        echo "🧪 Running pytest for 7_final_task..."
-        uv run pytest -v 7_final_task/
+    - name: Run tests for ${{ matrix.topic }}
+      run: uv run pytest -v ${{ matrix.topic }}/
