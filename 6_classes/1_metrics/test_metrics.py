@@ -328,7 +328,7 @@ def test_target_file_for_csv_with_header(tmp_path):
     path = os.path.join(tmp_path, "metrics.csv")
     create_file(path)
 
-    with open(path, "w") as file:
+    with open(path, "w", newline="") as file:
         writer = csv.writer(file, delimiter=";")
         writer.writerow(["date", "metric", "value"])
 
@@ -337,7 +337,7 @@ def test_target_file_for_csv_with_header(tmp_path):
     with statsd as s:
         s.incr("test.metric.name")
 
-    with open(path, "r") as file:
+    with open(path, "r", newline="") as file:
         reader = csv.reader(file, delimiter=";")
         lines = [row for row in reader]
 
@@ -354,7 +354,7 @@ def test_target_file_for_csv_without_header(tmp_path):
     with statsd as s:
         s.incr("test.metric.name")
 
-    with open(path, "r") as file:
+    with open(path, "r", newline="") as file:
         reader = csv.reader(file, delimiter=";")
         lines = [row for row in reader]
 

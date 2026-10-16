@@ -42,7 +42,7 @@ class Reader(Protocol):
 class CSVReader:
     def read_metrics(self, filepath: str) -> list[Metric]:
         metrics = []
-        with open(filepath, "r") as file:
+        with open(filepath, "r", newline="") as file:
             reader = csv.reader(file, delimiter=";")
             for idx, row in enumerate(reader):
                 if idx == 0:
